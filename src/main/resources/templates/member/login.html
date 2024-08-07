@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+
+</head>
+<body>
+<div th:replace="./common/nav"></div>
+
+<div th:if="${param.error}">
+    <h4>아이디나 비밀빈호를 다시 확인해주세요.</h4>
+</div>
+
+<!--<form action="/login" method="post">-->
+<!--    <input name="username">-->
+<!--    <input name="password" type="password">-->
+
+<!--    <button type="submit">로그인</button>-->
+<!--</form>-->
+
+<form>
+    <input name="username" id="username">
+    <input name="password" type="password" id="password">
+</form>
+    <button onclick="loginJWT()">로그인</button>
+
+
+<button onclick="getMyPage()">mypage</button>
+
+<script>
+    function loginJWT(){
+    fetch('/login/jwt', {
+      method : 'POST',
+      headers : {'Content-Type': 'application/json'},
+      body : JSON.stringify({
+        username : document.querySelector('#username').value,
+        password : document.querySelector('#password').value
+      })
+    }).then(r => r.text()).then((r)=>{ console.log(r) })
+  }
+
+    function getMyPage(){
+        fetch('/mypage/jwt')
+        .then((r)=>r.text)
+        .then((r)=>{console.log(r)})
+    }
+
+</script>
+
+</body>
+</html>

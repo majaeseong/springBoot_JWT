@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="nav">
+        <a class="logo">SpringMall</a>
+        <a href="/list">List</a>
+        <a href="/write">Write</a>
+
+
+<!--        <sec:authorize access="isAuthenticated()">-->
+<!--&lt;!&ndash;            <p sec:authentication="principal.username"></p>&ndash;&gt;-->
+<!--            <span class="text-white" sec:authentication="name">사용자</span>-->
+<!--            <button th:onclick="fetch('/logout')">로그아웃</button>-->
+<!--        </sec:authorize>-->
+<!--        <sec:authorize access="isAnonymous()">-->
+<!--            <button onclick="window.location.href='/login'">로그인</button>-->
+<!--        </sec:authorize>-->
+
+        <th:block sec:authorize="isAuthenticated()">
+                <h2><span sec:authentication="principal.username"></span>님 환영합니다!</h2>
+            <button th:onclick="fetch('/logout')">로그아웃</button>
+        </th:block>
+
+        <th:block sec:authorize="isAnonymous()">
+            <div align="right">
+                <button onclick="window.location.href='/login'">로그인</button>
+            </div>
+        </th:block>
+
+<!--        <p sec:authorize="isAuthenticated()">-->
+<!--            <span class="text-white" sec:authentication="name">사용자</span>-->
+<!--            <a href="/logout">logout</a>-->
+<!--        </p>-->
+
+    </div>
+
+
+
+</body>
+</html>

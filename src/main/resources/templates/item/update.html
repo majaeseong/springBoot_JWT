@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Item</title>
+
+</head>
+<body>
+<div th:replace="./common/nav"></div>
+<form action="/update" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <input type="hidden" th:value="${item.id}"/>
+    <input name="title" th:value="${item.title}">
+    <input name="price" type="number" th:value="${item.price}">
+    <button type="submit">전송</button>
+</form>
+
+
+</body>
+</html>
